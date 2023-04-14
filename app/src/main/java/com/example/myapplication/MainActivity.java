@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -31,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
         BancoController crud = new BancoController(getBaseContext());
         crud.create(alimento);
-//        crud.delete(18);
 
         ArrayList<Alimento> alimentos = crud.readAllAlimentos();
 
@@ -69,5 +69,14 @@ public class MainActivity extends AppCompatActivity {
 
             tableLayout.addView(row);
         }
+
+        Button buttonAdicionarAlimento = (Button)findViewById(R.id.buttonAdicionarAlimento);
+        buttonAdicionarAlimento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, AdicionarAlimento.class));
+            }
+        });
+
     }
 }
