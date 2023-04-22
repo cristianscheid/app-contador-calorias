@@ -23,6 +23,15 @@
         <activity
             android:name=".AdicionarAlimento" >
         </activity>
+        <activity
+            android:name=".EditarAlimento" >
+        </activity>
+        <activity
+            android:name=".ListaAlimentos" >
+        </activity>
+        <activity
+            android:name=".DiarioAlimentar" >
+        </activity>
     </application>
 
 </manifest>

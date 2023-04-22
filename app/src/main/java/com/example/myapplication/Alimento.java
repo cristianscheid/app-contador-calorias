@@ -13,6 +13,15 @@ public class Alimento {
     public Alimento() {
     }
 
+    public Alimento(String nome, String medida, Double quantidade, Double carboidratos, Double proteinas, Double gorduras) {
+        this.nome = nome;
+        this.medida = medida;
+        this.quantidade = quantidade;
+        this.carboidratos = carboidratos;
+        this.proteinas = proteinas;
+        this.gorduras = gorduras;
+    }
+
     public Alimento(int id, String nome, String medida, Double quantidade, Double carboidratos, Double proteinas, Double gorduras) {
         this.id = id;
         this.nome = nome;

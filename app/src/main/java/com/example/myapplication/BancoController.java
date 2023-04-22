@@ -15,9 +15,8 @@ public class BancoController {
         banco = new CriaBanco(context);
     }
 
-    public String create(Alimento a){
+    public void create(Alimento a){
         ContentValues valores;
-        long resultado;
         db = banco.getWritableDatabase();
         valores = new ContentValues();
         valores.put("nome", a.nome);
@@ -27,28 +26,17 @@ public class BancoController {
         valores.put("proteinas", a.proteinas);
         valores.put("gorduras", a.gorduras);
         valores.put("id_usuario", "1");
-        resultado = db.insert("alimentos", null, valores);
-        db.close();
-        if (resultado ==-1)
-            return "Erro ao inserir registro";
-        else
-            return "Registro Inserido com sucesso";
-    }
-
-    public void delete(int id){
-        db = banco.getReadableDatabase();
-        db.delete("alimentos", "id="+id, null);
+        db.insert("alimentos", null, valores);
         db.close();
     }
 
     public ArrayList<Alimento> readAllAlimentos(){
-        Cursor cursor;
         db = banco.getReadableDatabase();
-        cursor = db.rawQuery("SELECT * FROM alimentos", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM alimentos", null);
         ArrayList<Alimento> alimentos = new ArrayList<>();
-        Alimento a = new Alimento();
         if (cursor.moveToFirst()) {
             do {
+                Alimento a = new Alimento();
                 a.id = cursor.getInt(0);
                 a.nome = cursor.getString(1);
                 a.medida = cursor.getString(2);
@@ -63,4 +51,42 @@ public class BancoController {
         db.close();
         return alimentos;
     }
+
+    public Alimento readAlimentoById(int id){
+        db = banco.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM alimentos WHERE id="+id, null);
+        Alimento a = new Alimento();
+        if (cursor.moveToFirst()) {
+                a.id = cursor.getInt(0);
+                a.nome = cursor.getString(1);
+                a.medida = cursor.getString(2);
+                a.quantidade = cursor.getDouble(3);
+                a.carboidratos = cursor.getDouble(4);
+                a.proteinas = cursor.getDouble(5);
+                a.gorduras = cursor.getDouble(6);
+        }
+        return a;
+    }
+
+    public void update(Alimento a){
+        ContentValues valores;
+        db = banco.getWritableDatabase();
+        valores = new ContentValues();
+        valores.put("nome", a.nome);
+        valores.put("medida", a.medida);
+        valores.put("quantidade", a.quantidade);
+        valores.put("carboidratos", a.carboidratos);
+        valores.put("proteinas", a.proteinas);
+        valores.put("gorduras", a.gorduras);
+        valores.put("id_usuario", "1");
+        db.update("alimentos", valores, "id="+a.id, null);
+        db.close();
+    }
+
+    public void delete(int id){
+        db = banco.getReadableDatabase();
+        db.delete("alimentos", "id="+id, null);
+        db.close();
+    }
+
 }
