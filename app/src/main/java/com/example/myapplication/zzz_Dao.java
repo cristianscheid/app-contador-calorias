@@ -6,10 +6,10 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class Dao {
+public class zzz_Dao {
     Connection con;
 
-    public Dao() {
+    public zzz_Dao() {
         con = zzz_ConexaoMySQL.getConexaoMySQL();
     }
 

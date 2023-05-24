@@ -15,7 +15,7 @@ public class BancoController {
         banco = new CriaBanco(context);
     }
 
-    public void create(Alimento a){
+    public void createAlimento(Alimento a){
         ContentValues valores;
         db = banco.getWritableDatabase();
         valores = new ContentValues();
@@ -28,6 +28,36 @@ public class BancoController {
         valores.put("id_usuario", "1");
         db.insert("alimentos", null, valores);
         db.close();
+    }
+
+    public void createDiario(Diario d){
+        ContentValues valores;
+        db = banco.getWritableDatabase();
+        valores = new ContentValues();
+        valores.put("data", d.data);
+        valores.put("id_alimento", d.idAlimento);
+        valores.put("quantidade", d.quantidade);
+        db.insert("diarios", null, valores);
+        db.close();
+    }
+
+    public ArrayList<Diario> readDiarioByDate(String date){
+        db = banco.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM diarios WHERE data='"+date+"'", null);
+        ArrayList<Diario> diarios = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                Diario d = new Diario();
+                d.id = cursor.getInt(0);
+                d.data = cursor.getString(1);
+                d.idAlimento = cursor.getInt(2);
+                d.quantidade = cursor.getDouble(3);
+                diarios.add(d);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return diarios;
     }
 
     public ArrayList<Alimento> readAllAlimentos(){
@@ -68,7 +98,7 @@ public class BancoController {
         return a;
     }
 
-    public void update(Alimento a){
+    public void updateAlimento(Alimento a){
         ContentValues valores;
         db = banco.getWritableDatabase();
         valores = new ContentValues();
@@ -83,7 +113,7 @@ public class BancoController {
         db.close();
     }
 
-    public void delete(int id){
+    public void deleteAlimento(int id){
         db = banco.getReadableDatabase();
         db.delete("alimentos", "id="+id, null);
         db.close();

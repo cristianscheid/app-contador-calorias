@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AdicionarAlimento" >
+            android:name=".CadastrarAlimento" >
         </activity>
         <activity
             android:name=".EditarAlimento" >
@@ -31,6 +31,9 @@
         </activity>
         <activity
             android:name=".DiarioAlimentar" >
+        </activity>
+        <activity
+            android:name=".AdicionarAlimento" >
         </activity>
     </application>
 

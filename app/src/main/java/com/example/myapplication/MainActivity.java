@@ -15,6 +15,6 @@ public class MainActivity extends AppCompatActivity {
 
         crud = new BancoController(getBaseContext());
 
-        startActivity(new Intent(MainActivity.this, ListaAlimentos.class));
+        startActivity(new Intent(MainActivity.this, DiarioAlimentar.class));
     }
 }

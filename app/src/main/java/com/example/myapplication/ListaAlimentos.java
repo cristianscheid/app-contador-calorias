@@ -23,13 +23,11 @@ public class ListaAlimentos extends AppCompatActivity {
         setContentView(R.layout.lista_alimentos);
 
         ArrayList<Alimento> alimentos = MainActivity.crud.readAllAlimentos();
-
         TableLayout tableLayout = findViewById(R.id.tableAlimentos);
         for(Alimento a : alimentos){
-
             TableRow row = new TableRow(this);
-            TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-            row.setLayoutParams(lp);
+//            TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+//            row.setLayoutParams(lp);
 
             TextView textNomeAlimento = new TextView(this);
             textNomeAlimento.setText(a.getNome());
@@ -38,10 +36,8 @@ public class ListaAlimentos extends AppCompatActivity {
 
             MaterialButton botaoEditar = new MaterialButton(this);
             botaoEditar.setIcon(ContextCompat.getDrawable(this,R.drawable.baseline_edit_black_24dp));
-            botaoEditar.setWidth(24);
-            botaoEditar.setId(a.getId());
+            botaoEditar.setLayoutParams(new TableRow.LayoutParams(100, 100));
             row.addView(botaoEditar);
-
             botaoEditar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -52,17 +48,16 @@ public class ListaAlimentos extends AppCompatActivity {
 
             MaterialButton botaoExcluir = new MaterialButton(this);
             botaoExcluir.setIcon(ContextCompat.getDrawable(this,R.drawable.baseline_delete_black_24dp));
-            botaoExcluir.setWidth(24);
-            botaoExcluir.setId(a.getId());
+            botaoExcluir.setLayoutParams(new TableRow.LayoutParams(100, 100));
+            row.addView(botaoExcluir);
             botaoExcluir.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    MainActivity.crud.delete(a.getId());
+                    MainActivity.crud.deleteAlimento(a.getId());
                     finish();
                     startActivity(getIntent());
                 }
             });
-            row.addView(botaoExcluir);
 
             tableLayout.addView(row);
         }
@@ -71,7 +66,7 @@ public class ListaAlimentos extends AppCompatActivity {
         buttonAdicionarAlimento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ListaAlimentos.this, AdicionarAlimento.class));
+                startActivity(new Intent(ListaAlimentos.this, CadastrarAlimento.class));
             }
         });
 

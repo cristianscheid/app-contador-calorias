@@ -13,9 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Arrays;
 import java.util.List;
 
-public class EditarAlimento extends AppCompatActivity {
-
-    public static Alimento alimento;
+public class CadastrarAlimento extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,28 +21,18 @@ public class EditarAlimento extends AppCompatActivity {
         setContentView(R.layout.cadastrar_editar_alimento);
 
         TextView textView = (TextView)findViewById(R.id.textView);
-        textView.setText("Editar Alimento");
-
-        BancoController crud = new BancoController(getBaseContext());
-
-        EditText editTextNome = (EditText)findViewById(R.id.editTextNome);
-        EditText editTextMedida = (EditText)findViewById(R.id.editTextMedida);
-        EditText editTextQuantidade = (EditText)findViewById(R.id.editTextQuantidade);
-        EditText editTextCarboidratos = (EditText)findViewById(R.id.editTextCarboidratos);
-        EditText editTextProteinas = (EditText)findViewById(R.id.editTextProteinas);
-        EditText editTextGorduras = (EditText)findViewById(R.id.editTextGorduras);
-
-        editTextNome.setText(alimento.getNome());
-        editTextMedida.setText(alimento.getMedida());
-        editTextQuantidade.setText(alimento.getQuantidade().toString());
-        editTextCarboidratos.setText(alimento.getCarboidratos().toString());
-        editTextProteinas.setText(alimento.getProteinas().toString());
-        editTextGorduras.setText(alimento.getGorduras().toString());
+        textView.setText("Adicionar Alimento");
 
         Button buttonSalvar = (Button)findViewById(R.id.buttonSalvar);
         buttonSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                EditText editTextNome = (EditText)findViewById(R.id.editTextNome);
+                EditText editTextMedida = (EditText)findViewById(R.id.editTextMedida);
+                EditText editTextQuantidade = (EditText)findViewById(R.id.editTextQuantidade);
+                EditText editTextCarboidratos = (EditText)findViewById(R.id.editTextCarboidratos);
+                EditText editTextProteinas = (EditText)findViewById(R.id.editTextProteinas);
+                EditText editTextGorduras = (EditText)findViewById(R.id.editTextGorduras);
                 String nome = editTextNome.getText().toString();
                 String medida = editTextMedida.getText().toString();
                 String quantidade = editTextQuantidade.getText().toString();
@@ -62,17 +50,13 @@ public class EditarAlimento extends AppCompatActivity {
                 }
 
                 if(campoVazio){
-                    Toast.makeText(EditarAlimento.this, "Por favor preencha todos os campos!",
+                    Toast.makeText(CadastrarAlimento.this, "Por favor preencha todos os campos!",
                             Toast.LENGTH_LONG).show();
                 }else{
-                    alimento.nome = nome;
-                    alimento.medida = medida;
-                    alimento.quantidade = Double.parseDouble(quantidade);
-                    alimento.carboidratos = Double.parseDouble(carboidratos);
-                    alimento.proteinas = Double.parseDouble(proteinas);
-                    alimento.gorduras = Double.parseDouble(gorduras);
-                    crud.updateAlimento(alimento);
-                    startActivity(new Intent(EditarAlimento.this, ListaAlimentos.class));
+                    Alimento alimento = new Alimento(nome, medida, Double.parseDouble(quantidade),
+                            Double.parseDouble(carboidratos), Double.parseDouble(proteinas), Double.parseDouble(gorduras));
+                    MainActivity.crud.createAlimento(alimento);
+                    startActivity(new Intent(CadastrarAlimento.this, ListaAlimentos.class));
                 }
             }
         });
