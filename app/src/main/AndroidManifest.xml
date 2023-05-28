@@ -27,13 +27,16 @@
             android:name=".EditarAlimento" >
         </activity>
         <activity
-            android:name=".ListaAlimentos" >
+            android:name=".CadastroAlimentos" >
         </activity>
         <activity
             android:name=".DiarioAlimentar" >
         </activity>
         <activity
             android:name=".AdicionarAlimento" >
+        </activity>
+        <activity
+            android:name=".SelecionarData" >
         </activity>
     </application>
 

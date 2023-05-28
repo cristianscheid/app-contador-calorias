@@ -15,22 +15,20 @@ import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 
-public class ListaAlimentos extends AppCompatActivity {
+public class CadastroAlimentos extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lista_alimentos);
+        setContentView(R.layout.cadastro_alimentos);
 
         ArrayList<Alimento> alimentos = MainActivity.crud.readAllAlimentos();
         TableLayout tableLayout = findViewById(R.id.tableAlimentos);
         for(Alimento a : alimentos){
             TableRow row = new TableRow(this);
-//            TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-//            row.setLayoutParams(lp);
 
             TextView textNomeAlimento = new TextView(this);
-            textNomeAlimento.setText(a.getNome());
+            textNomeAlimento.setText(a.getNome() + "    ");
             textNomeAlimento.setTextSize(20);
             row.addView(textNomeAlimento);
 
@@ -42,7 +40,7 @@ public class ListaAlimentos extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     EditarAlimento.alimento = a;
-                    startActivity(new Intent(ListaAlimentos.this, EditarAlimento.class));
+                    startActivity(new Intent(CadastroAlimentos.this, EditarAlimento.class));
                 }
             });
 
@@ -62,11 +60,19 @@ public class ListaAlimentos extends AppCompatActivity {
             tableLayout.addView(row);
         }
 
-        Button buttonAdicionarAlimento = (Button)findViewById(R.id.buttonAdicionarAlimento);
+        Button buttonAdicionarAlimento = (Button)findViewById(R.id.buttonCadastroAlimento);
         buttonAdicionarAlimento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ListaAlimentos.this, CadastrarAlimento.class));
+                startActivity(new Intent(CadastroAlimentos.this, CadastrarAlimento.class));
+            }
+        });
+
+        Button buttonDiarioAlimentar = (Button)findViewById(R.id.buttonDiarioAlimentar);
+        buttonDiarioAlimentar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(CadastroAlimentos.this, DiarioAlimentar.class));
             }
         });
 

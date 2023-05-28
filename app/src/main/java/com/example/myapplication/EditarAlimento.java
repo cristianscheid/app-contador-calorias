@@ -22,7 +22,7 @@ public class EditarAlimento extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cadastrar_editar_alimento);
 
-        TextView textView = (TextView)findViewById(R.id.textView);
+        TextView textView = (TextView)findViewById(R.id.textViewTitulo);
         textView.setText("Editar Alimento");
 
         BancoController crud = new BancoController(getBaseContext());
@@ -72,7 +72,7 @@ public class EditarAlimento extends AppCompatActivity {
                     alimento.proteinas = Double.parseDouble(proteinas);
                     alimento.gorduras = Double.parseDouble(gorduras);
                     crud.updateAlimento(alimento);
-                    startActivity(new Intent(EditarAlimento.this, ListaAlimentos.class));
+                    startActivity(new Intent(EditarAlimento.this, CadastroAlimentos.class));
                 }
             }
         });

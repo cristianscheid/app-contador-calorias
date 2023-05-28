@@ -60,6 +60,12 @@ public class BancoController {
         return diarios;
     }
 
+    public void deleteDiario(int id){
+        db = banco.getReadableDatabase();
+        db.delete("diarios", "id="+id, null);
+        db.close();
+    }
+
     public ArrayList<Alimento> readAllAlimentos(){
         db = banco.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM alimentos", null);

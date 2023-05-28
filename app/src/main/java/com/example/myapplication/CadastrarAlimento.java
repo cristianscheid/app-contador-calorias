@@ -20,7 +20,7 @@ public class CadastrarAlimento extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cadastrar_editar_alimento);
 
-        TextView textView = (TextView)findViewById(R.id.textView);
+        TextView textView = (TextView)findViewById(R.id.textViewTitulo);
         textView.setText("Adicionar Alimento");
 
         Button buttonSalvar = (Button)findViewById(R.id.buttonSalvar);
@@ -56,7 +56,7 @@ public class CadastrarAlimento extends AppCompatActivity {
                     Alimento alimento = new Alimento(nome, medida, Double.parseDouble(quantidade),
                             Double.parseDouble(carboidratos), Double.parseDouble(proteinas), Double.parseDouble(gorduras));
                     MainActivity.crud.createAlimento(alimento);
-                    startActivity(new Intent(CadastrarAlimento.this, ListaAlimentos.class));
+                    startActivity(new Intent(CadastrarAlimento.this, CadastroAlimentos.class));
                 }
             }
         });

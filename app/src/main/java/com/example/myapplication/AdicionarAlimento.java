@@ -16,8 +16,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import java.text.DateFormat;
-import java.text.ParseException;
+
+import org.w3c.dom.Text;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,7 +41,7 @@ public class AdicionarAlimento extends AppCompatActivity {
             arrayNomeAlimentos.add(a.getNome());
         }
 
-        TextView textview = findViewById(R.id.textView);
+        TextView textview = findViewById(R.id.textViewTitulo);
         textview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +81,8 @@ public class AdicionarAlimento extends AppCompatActivity {
                         // set selected item on textView
                         textview.setText(adapter.getItem(position));
                         alimento = alimentos.get(position);
+                        TextView textViewMedida = findViewById(R.id.textViewMedida);
+                        textViewMedida.setText(alimento.getMedida());
                         // Dismiss dialog
                         dialog.dismiss();
                     }
@@ -87,7 +90,7 @@ public class AdicionarAlimento extends AppCompatActivity {
             }
         });
 
-        Button buttonAdicionar = (Button)findViewById(R.id.buttonAdicionar);
+        Button buttonAdicionar = (Button)findViewById(R.id.buttonSelecionar);
         buttonAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

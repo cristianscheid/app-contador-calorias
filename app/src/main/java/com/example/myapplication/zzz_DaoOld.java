@@ -6,11 +6,11 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class zzz_Dao {
+public class zzz_DaoOld {
     Connection con;
 
-    public zzz_Dao() {
-        con = zzz_ConexaoMySQL.getConexaoMySQL();
+    public zzz_DaoOld() {
+        con = zzz_ConexaoOld.getConexaoMySQL();
     }
 
     public ArrayList<Alimento> readAlimentos() throws SQLException {

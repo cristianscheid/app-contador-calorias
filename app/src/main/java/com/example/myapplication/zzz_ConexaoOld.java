@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class zzz_ConexaoMySQL {
+public class zzz_ConexaoOld {
 
     public static String status = "Não conectou...";
 
-    public zzz_ConexaoMySQL() {
+    public zzz_ConexaoOld() {
 
     }
 
@@ -49,7 +49,7 @@ public class zzz_ConexaoMySQL {
 
     public static boolean FecharConexao() {
         try {
-            zzz_ConexaoMySQL.getConexaoMySQL().close();
+            zzz_ConexaoOld.getConexaoMySQL().close();
             return true;
         } catch (SQLException e) {
             return false;
@@ -58,6 +58,6 @@ public class zzz_ConexaoMySQL {
 
     public static java.sql.Connection ReiniciarConexao() {
         FecharConexao();
-        return zzz_ConexaoMySQL.getConexaoMySQL();
+        return zzz_ConexaoOld.getConexaoMySQL();
     }
 }
